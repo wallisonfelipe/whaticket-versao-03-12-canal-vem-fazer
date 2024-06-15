@@ -6,6 +6,7 @@ networks:
 services:
 
   backend:
+    container_name: whaticket-backend
     build:
       context: ./backend
       dockerfile: ./Dockerfile
@@ -29,6 +30,7 @@ services:
       - whaticket
 
   frontend:
+    container_name: whaticket-frontend
     ports:
       - ${FRONTEND_PORT:-3000}:80
       - ${FRONTEND_SSL_PORT:-3001}:443
@@ -47,6 +49,7 @@ services:
       - whaticket
 
   mysql:
+    container_name: whaticket-mysql
     image: ${MYSQL_ENGINE:-mariadb}:${MYSQL_VERSION:-10.6}
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin    
     volumes:
